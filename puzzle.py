@@ -106,50 +106,8 @@ class Puzzle:
     def getCost(self,actual):
         while(actual > 0):
             return 1
-
-
-    def bestFirst(self):
-        #função de avaliação por busca em largura
-        inicio = time.time()
-        node = self.matrix
-        Mfinal = Matrix(3,3)
-        Mfinal.buildMatrix(self.final_state) #1,2,3,4,5,6,7,8,0
-        final = Mfinal.getMatrix()
-        queue = PriorityQueue()
-        queue.put(node)
-        visitedNodes = []
-        n = 1
-        
-        while(not node.isEqual(final) and not queue.empty()):
-            node = queue.get()
-            visitedNodes.append(node)
-            moves = []
-            childNodes = node.getPossibleNodes(moves)
-            for i in range(len(childNodes)):
-                if not self.existsIn(childNodes[i].getMatrix(),visitedNodes):
-                    childNodes[i].move = moves[i]
-                    childNodes[i].manhattanDist()
-                    childNodes[i].setPrevious(node)
-                    queue._put(childNodes[i])
-            n += 1
-        moves = []
-        self.cost = n
-        if(node.isEqual(final)):
-            moves.append(node.move)
-            nd = node.previous
-            while nd != None:
-                if nd.move != '':
-                    moves.append(nd.move)
-                nd = nd.previous
-        fim = time.time()
-        self.lastSolveTime = fim-inicio
-        print("## Best-First ##\n")
-        print("Tempo gasto {temp: .5f}:".format(temp = fim-inicio))
-        print("Tós visitados:",n,"\n")
-        return moves[::-1]
     
     def a_star(self):
-        # iniciando timer
         inicio = time.time()
         node = self.matrix
         Mfinal = Matrix(3,3)

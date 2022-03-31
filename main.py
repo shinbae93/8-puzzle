@@ -102,7 +102,7 @@ while is_running:
 
                         moves = puzzle.a_star()
                         tempo = "{temp: .5f} seconds".format(temp = puzzle.lastSolveTime)
-                        report_msg = '<b>Visited nodes:</b> '+str(puzzle.cost)+'        <b>Time:</b>'+tempo+ '        <b>Resolution:</b> '+str(len(moves))+' steps'
+                        report_msg = '<b>Visited nodes:</b> '+str(puzzle.cost)+'        <b>Time:</b>'+tempo+ '<b>Resolution:</b> '+str(len(moves))+' steps'
                         # Confirmation Box - Algorithm Report
                         confirmation_win = pygame_gui.windows.ui_confirmation_dialog.UIConfirmationDialog(rect = pygame.Rect((600, 300), (180, 80)),
                                                                                                 manager = manager,
